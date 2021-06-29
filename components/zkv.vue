@@ -278,7 +278,7 @@
 export default {
     name: "zkv",
     data() { return { 
-      "sellang" : "1", 
+      "sellang" : "hinDi", 
       "selobztype" : "0", 
       "sel_char" : "A",
       zimezs: null,
@@ -290,6 +290,11 @@ export default {
     this.zvrds = await this.$content(conf.zvrds).fetch();
   },    
     methods: {},
+    computed: {
+      imezlist : function () {
+        // return this.zimezs.sellang.sel_char; // not  vorking
+      }
+    }
 }
 </script>
 <style>
