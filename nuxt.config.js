@@ -11,7 +11,7 @@ export default {
   },
   target: 'static',
   css: [ ], plugins: [ ], components: true,
-  buildModules: [ '@nuxtjs/eslint-module' ],
+  buildModules: [  ],
   modules: [
     'bootstrap-vue/nuxt', '@nuxtjs/axios', '@nuxtjs/pwa', '@nuxt/content'
   ],

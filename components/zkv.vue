@@ -2,10 +2,20 @@
     <div>
         <!-- <div> -->
             <select v-model="sellang">
-                <option value="1">ABCabc</option> <option value="2">zabc</option>
-                <option value="3" selected>hinDi</option> <option value="4">knrra</option> <option value="5">mlyalm</option> <option value="6">guzraTi</option>
-                <option value="7">bNgali</option> <option value="8">gurumukhi</option> <option value="9">Telugu</option> <option value="10">Tmil</option>
-            		<option value="11">urriya</option> <option value="12">pnzabi</option> <option value="13">guzraTi</option> <option value="14">rsiAn</option>
+                <option value="ABCabc">ABCabc</option>
+                <option value="zabc">zabc</option>
+                <option value="hinDi" selected>hinDi</option>
+                <option value="knrra">knrra</option>
+                <option value="mlyalm">mlyalm</option>
+                <option value="guzraTi">guzraTi</option>
+                <option value="bNgali">bNgali</option>
+                <option value="gurumukhi">gurumukhi</option>
+                <option value="Telugu">Telugu</option>
+                <option value="Tmil">Tmil</option>
+            		<option value="urriya">urriya</option>
+                <option value="pnzabi">pnzabi</option>
+                <option value="guzraTi">guzraTi</option>
+                <option value="rsiAn">rsiAn</option>
             </select>
             <select v-model="selobztype">
                 <option value="0" selected>naun</option><option value="1">pronaun</option> <option value="2">AdzAktiv</option>
@@ -19,6 +29,7 @@
             <p>bhasa : {{sellang}}</p>
             <p>vrd type : {{selobztype}}</p>
             <p>uzer klikd {{sel_char}}</p>
+            <p>zvrds {{ zvrds.hinDi.s[0] }}</p>
              <img src="~/assets/pikcrs/apple.jpg" />
           </b-modal>
           <input type="radio" v-b-modal.modal-1  v-model="sel_char"  id="A_redio" name="redio_zabc" value="A" >
@@ -263,14 +274,21 @@
 </template>
 <script>
 // import { Meteor } from 'meteor/meteor';
+  import conf from '../conf';
 export default {
     name: "zkv",
-    data() { return {
-      "sellang" : "1",
-      "selobztype" : "0",
+    data() { return { 
+      "sellang" : "1", 
+      "selobztype" : "0", 
       "sel_char" : "A",
-
-    }; },
+      zimezs: null,
+      zvrds: null
+       }
+    },
+  async fetch() {
+    this.zimezs = await this.$content(conf.zimezs).fetch();
+    this.zvrds = await this.$content(conf.zvrds).fetch();
+  },    
     methods: {},
 }
 </script>
