@@ -9,7 +9,6 @@
                 <option value="mlyalm">mlyalm</option>
                 <option value="guzraTi">guzraTi</option>
                 <option value="bNgali">bNgali</option>
-                <option value="gurumukhi">gurumukhi</option>
                 <option value="Telugu">Telugu</option>
                 <option value="Tmil">Tmil</option>
             		<option value="urriya">urriya</option>
@@ -18,19 +17,26 @@
                 <option value="rsiAn">rsiAn</option>
             </select>
             <select v-model="selobztype">
-                <option value="0" selected>naun</option><option value="1">pronaun</option> <option value="2">AdzAktiv</option>
-                <option value="3">vrb</option><option value="4">Advrb</option><option value="5">prepozisn</option>
-                <option value="6">knzAksn</option><option value="7">kuestion???</option><option value="8">123456789LJQWXF</option>
-                <option value="9">months</option><option value="10">kolors</option><option value="11">kemikls</option>
+                <option value="naun" selected>naun</option>
+                <option value="pronaun">pronaun</option>
+                <option value="AdzAktiv">AdzAktiv</option>
+                <option value="vrb">vrb</option>
+                <option value="Advrb">Advrb</option>
+                <option value="prepozisn">prepozisn</option>
+                <option value="knzAksn">knzAksn</option>
+                <option value="kuestion">kuestion</option>
+                <option value="123456789LJQWXF">123456789LJQWXF</option>
+                <option value="months">months</option>
+                <option value="kolors">kolors</option>
+                <option value="kemikls">kemikls</option>
             </select>
             <br/>
         <div class="radio-toolbar">
-          <b-modal id="modal-1" title="BootstrapVue">
-            <p>bhasa : {{sellang}}</p>
-            <p>vrd type : {{selobztype}}</p>
-            <p>uzer klikd {{sel_char}}</p>
-            <p>zvrds {{ zvrds.hinDi.s[0] }}</p>
-             <img src="~/assets/pikcrs/apple.jpg" />
+          <b-modal class="u5cdot" id="modal-1" :title="sellang + ' : ' + sel_char">
+            <li v-for="(imez, index) in zvrds[sellang][sel_char]" :key="index">
+                <img :src="require('../assets/pikcrs/' + zimezs[imez][0] )"/>
+                <p class="u5cdot">{{ zimezs[imez][1] }}</p>
+            </li>
           </b-modal>
           <input type="radio" v-b-modal.modal-1  v-model="sel_char"  id="A_redio" name="redio_zabc" value="A" >
           <label for="A_redio"><div class='div_zkv'>
@@ -280,7 +286,7 @@ export default {
     data() { return { 
       "sellang" : "hinDi", 
       "selobztype" : "0", 
-      "sel_char" : "A",
+      "sel_char" : "s",
       zimezs: null,
       zvrds: null
        }
@@ -292,7 +298,7 @@ export default {
     methods: {},
     computed: {
       imezlist : function () {
-        // return this.zimezs.sellang.sel_char; // not  vorking
+        return this.zimezs[sellang][sel_char]; // not  vorking
       }
     }
 }
